@@ -23,11 +23,11 @@ const queryClient = new QueryClient();
 // Layout component that conditionally renders the Navbar
 const Layout = () => {
   const location = useLocation();
-  const hideNavbar = ['/login', '/signup'].includes(location.pathname);
+  const hideNavbarAndFooter = ['/login', '/signup'].includes(location.pathname);
   
   return (
     <div className="flex flex-col min-h-screen">
-      {!hideNavbar && <Navbar />}
+      {!hideNavbarAndFooter && <Navbar />}
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,7 +39,7 @@ const Layout = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
+      {!hideNavbarAndFooter && <Footer />}
     </div>
   );
 };

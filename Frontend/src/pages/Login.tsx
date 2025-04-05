@@ -100,6 +100,14 @@ const Login: React.FC = () => {
                 Create an account
               </Link>
             </div>
+            
+            <hr className="w-full my-4 border-gray-200" />
+            
+            <div className="text-center text-sm text-gray-600">
+              <p className="font-semibold mb-2">Demo Credentials:</p>
+              <p className="mb-1"><span className="font-medium">Viewer:</span> viewer@example.com / password123</p>
+              <p><span className="font-medium">Creator:</span> creator@example.com / password123</p>
+            </div>
           </CardFooter>
         </form>
       </Card>
