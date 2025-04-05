@@ -2,11 +2,21 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/contexts/AuthContext';
-import { User, LogOut, Search, Map } from 'lucide-react';
+import { User, LogOut, Search, Map, ChevronDown, Plus } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar: React.FC = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  
+  // Determine if user is a creator (for demo, we'll check if email starts with 'creator')
+  const isCreator = user?.email?.startsWith('creator');
 
   return (
     <nav className="bg-white shadow-md py-4">
@@ -35,21 +45,53 @@ const Navbar: React.FC = () => {
           
           {isAuthenticated ? (
             <div className="flex items-center space-x-3">
-              <div className="hidden md:block text-sm text-gray-600">
-                Hello, {user?.email?.split('@')[0]}
-              </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  logout();
-                  navigate('/');
-                }}
-                className="flex items-center"
-              >
-                <LogOut className="h-4 w-4 mr-1" />
-                <span className="hidden md:inline">Logout</span>
-              </Button>
+              {isCreator && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => navigate('/create')}
+                  className="flex items-center"
+                >
+                  <Plus className="h-4 w-4 mr-1" />
+                  <span>Create</span>
+                </Button>
+              )}
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center"
+                  >
+                    <User className="h-4 w-4 mr-1" />
+                    <span className="mx-1">Demo User</span>
+                    <ChevronDown className="h-3 w-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => navigate('/account')}>
+                    My Account
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate('/profile')}>
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/subscriptions')}>
+                    Subscription
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={() => {
+                      logout();
+                      navigate('/');
+                    }}
+                  >
+                    <LogOut className="h-4 w-4 mr-1" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           ) : (
             <div className="flex items-center space-x-3">
