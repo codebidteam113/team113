@@ -1,0 +1,26 @@
+# Ignore Python virtual environment in Backend
+Backend/.venv/
+Backend/__pycache__/
+Backend/*.pyc
+Backend/*.pyo
+Backend/*.pyd
+Backend/.Python
+Backend/env/
+Backend/venv/
+Backend/.env
+Backend/.DS_Store
+
+# Ignore frontend build and dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
+frontend/.env
+frontend/.vite
+
+# General
+*.log
+*.tmp
+*.swp
+*.swo
+.env
+.DS_Store
