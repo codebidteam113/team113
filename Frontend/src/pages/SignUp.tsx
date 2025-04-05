@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Globe } from 'lucide-react';
+import { User } from 'lucide-react';
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
@@ -54,7 +53,7 @@ const SignUp: React.FC = () => {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <div className="flex justify-center mb-2">
-            <Globe className="h-12 w-12 text-travel-blue" />
+            <User className="h-12 w-12 text-travel-blue" />
           </div>
           <CardTitle className="text-2xl font-bold text-center">Create an Account</CardTitle>
           <CardDescription className="text-center">
