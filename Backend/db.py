@@ -10,5 +10,5 @@ client = MongoClient(MONGO_URI)
 db = client["wanderlustcanvas"]
 users_collection = db['users']
 
-users_collection.create_index([("email", ASCENDING)], unique=True)
+
 
